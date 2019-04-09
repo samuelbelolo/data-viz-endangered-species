@@ -1,6 +1,13 @@
-body
-{
-  background: green;
+body{
   display: flex;
-  justify-content: baseline
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  .country{
+    border: black solid 1px;
+    padding: 40px;
+    text-align: center;
+    text-decoration: none;
+  }
 }
