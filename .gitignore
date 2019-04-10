@@ -9,6 +9,7 @@ Icon
 
 # DIST Folder
 /dist/
+/cache/*
 
 # Thumbnails
 ._*

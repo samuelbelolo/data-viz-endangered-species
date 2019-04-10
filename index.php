@@ -5,34 +5,42 @@
  * Routing
  */
 
-define ('URL','http://localhost/si_back/');
+define('URL','http://localhost/si_back/');
+define('token', '9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee');
 
- //Get q param
- $q = !empty($_GET['q']) ? $_GET['q'] : 'home';
+//Get q param
+$q = !empty($_GET['q']) ? $_GET['q'] : 'home';
 
- //define controller
- $controller = '404';
+//define controller
+$controller = '404';
 
- if($q == 'home')
-{
-    $controller = 'home';
-} else if ($q == 'about-us')
-{
-    $controller = 'about';
-} else if (preg_match('/^page\/[1-9][0-9]*$/', $q))
-{
-    $controller = 'page';
+// if($q == 'home'){
+//     $controller = 'home';
+// }
+
+// REGION
+
+$regionArray = array(
+    'northern_africa',
+    'eastern_africa',
+    'persian_gulf',
+    'europe',
+    'southern_africa',
+    'mediterranean',
+    'western_africa',
+    'central_africa',
+    'global',
+    'gulf_of_mexico',
+    'africa',
+    'northeastern_africa'
+);
+foreach ($regionArray as $key => $value) {
+    if ($q == $value) {
+        $controller = 'region';
+
+    }
 }
- 
-
-/**
- * prepare your POST here
- */
 
 
-
-
-
-
- //include controller
- include './controllers/'.$controller.'.php';
+//include controller
+include ('./controllers/'.$controller.'.php');
