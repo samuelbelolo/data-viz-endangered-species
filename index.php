@@ -40,7 +40,7 @@ $regionArray = array(
 );
 foreach ($regionArray as $key => $value) {
     // SPIECES  REGION
-    if (preg_match('/^'.$value.'\/[a-zA-Z]+$/', $q)) {
+    if (preg_match('/^'.$value.'\/[a-zA-Z ]+$/', $q)) {
         $controller = 'species';
     }
     elseif ($q == $value) {
