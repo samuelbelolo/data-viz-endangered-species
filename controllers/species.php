@@ -29,8 +29,12 @@
     $habitatsURL = 'https://apiv3.iucnredlist.org/api/v3/habitats/species/name/'.$speciesName.'?token='.token;
     $habitatArray = ApiRequest($habitatsURL, 604800);
     
+    // Measures
+
+    $measuresURL = 'https://apiv3.iucnredlist.org/api/v3/measures/species/name/'.$speciesName.'?token='.token;
+    $measuresArray = ApiRequest($measuresURL, 604800);
     
     // $result = array_merge($speciesInfosArray->result,$test->result);
     echo '<pre>';
-    print_r($habitatArray);
+    print_r($measuresArray);
     echo '</pre>';
