@@ -22,5 +22,6 @@
     "gulp-uglify": "^3.0.1"
   },
   "author": "Alphonse Bouy",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }

@@ -1,12 +1,11 @@
 <?php
 
-include './database/database.php';
 
 /**
  * Routing
  */
 
-define ('URL','http://localhost/template_php/');
+define ('URL','http://localhost/si_back/');
 
  //Get q param
  $q = !empty($_GET['q']) ? $_GET['q'] : 'home';

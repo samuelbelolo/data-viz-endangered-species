@@ -1,0 +1,8 @@
+.map-container{
+    width: 200%;
+    height: 100vh;
+    overflow: hidden;
+    g:hover path{
+        fill: red;
+    }
+}
