@@ -12,7 +12,7 @@
 
     $generalInfosURL = 'https://apiv3.iucnredlist.org/api/v3/species/'.$speciesName.'?token='.token;
 
-    $speciesInfosArray = ApiRequest($generalInfosURL, 604800);
+    $generalInfosArray = ApiRequest($generalInfosURL, 604800);
 
     // Narrative
 
@@ -34,7 +34,20 @@
     $measuresURL = 'https://apiv3.iucnredlist.org/api/v3/measures/species/name/'.$speciesName.'?token='.token;
     $measuresArray = ApiRequest($measuresURL, 604800);
     
-    // $result = array_merge($speciesInfosArray->result,$test->result);
+    // Common Name
+
+    $commonNamesURL = 'https://apiv3.iucnredlist.org/api/v3/species/common_names/'.$speciesName.'?token='.token;
+    $commonNamesArray = ApiRequest($commonNamesURL, 604800);
+    
+    $speciesInfosArray = array(
+        'general' => $generalInfosArray->result,
+        'narrative' => $narrativeArray->result,
+        'threats' => $threatsArray->result,
+        'habitats' => $habitatArray->result,
+        'measures' => $measuresArray->result,
+        'commonNames' => $commonNamesArray->result
+    );
+    
     echo '<pre>';
-    print_r($measuresArray);
+    print_r($speciesInfosArray);
     echo '</pre>';
