@@ -1,5 +1,35 @@
 <?php
   // FUNCTIONS
+  function ApiRequest($url, $delay){
+
+    // Cache info
+    $cacheKey = md5($url);
+    $cachePath = './cache/'.$cacheKey;
+    $cacheUsed = false;
+
+    // If cache available
+    if(file_exists($cachePath) && time() - filemtime($cachePath) < $delay){
+      $result = file_get_contents($cachePath);
+      $cacheUsed = true;
+    }
+    else{
+      // API REQUEST
+      $curl = curl_init($url);
+      curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+      $result = curl_exec($curl);
+      curl_close($curl);
+
+      // Save API in cache
+      file_put_contents($cachePath, $result);
+    }
+
+    $result= json_decode($result);
+
+    return $result;
+  }
 
   function selectRandomSpiecies($array,$count,$range){
     $newArray = array();
@@ -28,17 +58,8 @@
     foreach ($array as $key => $value) {
       // GET Img if existing for each spieces in array
       $wikipediaUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.$value->genus_name.'&prop=pageimages&format=json&piprop=original';
-      // API REQUEST
-      $curl = curl_init($wikipediaUrl);
-      curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-      curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-      $result = curl_exec($curl);
-      curl_close($curl);
-
-      $result= json_decode($result);
-
+      $result = ApiRequest($wikipediaUrl, 604800);
+    
       // For every result 
       foreach ($result->query->pages as $resultKey => $resultValue) {
         // If img exist => add to array
@@ -53,15 +74,7 @@
   // API URL BY REGION
   $redlistUrl = 'http://apiv3.iucnredlist.org/api/v3/species/region/'.$_GET['q'].'/page/0?token='.token;
 
-  $curl = curl_init($redlistUrl);
-  curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
-  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-  curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
-  $result = curl_exec($curl);
-  curl_close($curl);
-
-  $result = json_decode($result);
+  $result = ApiRequest($redlistUrl, 604800);
 
   // Parameter of the response
 
@@ -74,7 +87,7 @@
 
 
   echo '<pre>';
-  print_r($resultArray ['newArray']);
+  print_r($resultArray['newArray']);
   echo '</pre>';
 
 
