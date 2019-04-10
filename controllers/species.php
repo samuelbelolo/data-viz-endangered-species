@@ -17,10 +17,13 @@
     $narrativeURL = 'https://apiv3.iucnredlist.org/api/v3/species/narrative/'.$speciesName.'?token='.token;
     $narrativeArray = ApiRequest($narrativeURL, 604800);
 
+    // Threats
 
+    $threatsURL= 'https://apiv3.iucnredlist.org/api/v3/threats/species/name/'.$speciesName.'?token='.token;
+    $threatsArray = ApiRequest($threatsURL, 604800);
     
     
     // $result = array_merge($speciesInfosArray->result,$test->result);
     echo '<pre>';
-    print_r($speciesInfosArray);
+    print_r($threatsArray);
     echo '</pre>';
