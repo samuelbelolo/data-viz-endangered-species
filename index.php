@@ -1,5 +1,9 @@
 <?php
+/**
+*   Functions 
+*/
 
+include('./functions.php');
 
 /**
  * Routing
@@ -35,11 +39,16 @@ $regionArray = array(
     'northeastern_africa'
 );
 foreach ($regionArray as $key => $value) {
-    if ($q == $value) {
+    // SPIECES  REGION
+    if (preg_match('/^'.$value.'\/[a-zA-Z]+$/', $q)) {
+        $controller = 'species';
+    }
+    elseif ($q == $value) {
         $controller = 'region';
-
     }
 }
+
+
 
 
 //include controller
