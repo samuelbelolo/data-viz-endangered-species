@@ -66,6 +66,9 @@
                 if (!empty($resultValue->original)) {
                 $value->url= $resultValue->original->source;
                 }
+                else{
+                    $value->url= URL.'dist/img/defaultImg.jpg';
+                }
             }
         }
         return $array;
