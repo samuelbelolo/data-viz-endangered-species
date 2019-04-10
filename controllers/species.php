@@ -47,6 +47,17 @@
         'measures' => $measuresArray->result,
         'commonNames' => $commonNamesArray->result
     );
+
+    /**
+    * VALUES
+    */
+    // Process 
+
+    $category = $speciesInfosArray['general'][0]->category;
+    $mainCommonName = $speciesInfosArray['general'][0]->main_common_name;
+    $isMarineSystem = $speciesInfosArray['general'][0]->marine_system == '1'? true : false;
+    $isFreshWaterSystem = $speciesInfosArray['general'][0]->freshwater_system == '1'? true : false;
+    $isTerrestrialSystem = $speciesInfosArray['general'][0]->terrestrial_system == '1'? true : false;
     
     echo '<pre>';
     print_r($speciesInfosArray);
