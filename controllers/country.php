@@ -11,32 +11,66 @@
     */
     $countSpecies = $countryArray->count;
     $categoryCountArray = array(
-        'count' => array(
-            'DD' => 0,
-            'LC' => 0,
-            'NT' => 0,
-            'VU' => 0,
-            'EN' => 0,
-            'CR' => 0,
-            'EW' => 0,
-            'EX' => 0,
-            'LR/lc' => 0,
-            'LR/nt' => 0,
-            'LR/cd' => 0
+        'category' => array(
+            'DD' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'LC' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'NT' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'VU' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'EN' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'CR' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'EW' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'EX' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'LR/lc' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'LR/nt' => array(
+                'count' => 0,
+                'names' => array()
+            ),
+            'LR/cd' => array(
+                'count' => 0,
+                'names' => array()
+            )
         ),
         'ratio' => array()
     );
 
     foreach ($countryArray->result as $key => $value) {
-        $categoryCountArray['count'][$value->category]++;
+        $categoryCountArray['category'][$value->category]['count']++;
+        $categoryCountArray['category'][$value->category]['names'][]=$value->scientific_name;
     }
 
-    foreach ($categoryCountArray['count'] as $key => $value) {
-        $categoryCountArray['ratio'][$key] = $value/$countSpecies;
+    foreach ($categoryCountArray['category'] as $key => $value) {
+        $categoryCountArray['ratio'][$key] = $value['count']/$countSpecies;
     }
-    // echo '<pre>';
-    // print_r($categoryCountArray);
-    // echo '</pre>';
+    echo '<pre>';
+    print_r($categoryCountArray);
+    echo '</pre>';
 
     // echo '<pre>';
     // print_r($countryArray);
@@ -59,9 +93,6 @@
     // $resultArray['newArray'] = addUrlImage($resultArray['newArray']);
 
 
-    // echo '<pre>';
-    // print_r($resultArray['newArray']);
-    // echo '</pre>';
 
 
     include('./views/pages/country.php');
