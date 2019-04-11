@@ -60,20 +60,27 @@
 
   function addUrlImage($array){
         foreach ($array as $key => $value) {
+
             // GET Img if existing for each spieces in array
-            $wikipediaUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.$value->genus_name.'&prop=pageimages&format=json&piprop=original';
-            $result = ApiRequest($wikipediaUrl, 604800);
+            $wikipediaUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.$value['genus'].'&prop=pageimages&format=json&piprop=original';
+
+            // echo $wikipediaUrl;
+            // echo "<br>";
+            $data = ApiRequest($wikipediaUrl, 604800);
+            // echo '<pre>';
+            // print_r($data);
+            // echo '</pre>';
             
             // For every result 
-            foreach ($result->query->pages as $resultKey => $resultValue) {
+            foreach ($data->query->pages as $resultKey => $resultValue) {
                 // If img exist => add to array
                 if (!empty($resultValue->original)) {
-                $value->url= $resultValue->original->source;
+                    $array[$key]['url']= $resultValue->original->source;
                 }
                 else{
-                    $value->url= URL.'dist/img/defaultImg.jpg';
+                    $array[$key]['url']= URL.'dist/img/defaultImg.jpg';
                 }
             }
         }
         return $array;
-  }
+    }
