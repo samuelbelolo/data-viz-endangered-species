@@ -4,6 +4,57 @@
     height: 100vh;
     margin: 0 auto;
     overflow: hidden;
+    background: $dark-blue;
+    .legend{
+        position: absolute;
+        bottom: 20px;
+        left: 30px;
+        padding: 10px;
+        background: $light-white;
+        h4{
+            margin: 0;
+            margin-bottom: 20px;
+            max-width: 100px;
+        }
+        .color{
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            span{
+                color: $dark-blue;
+            }
+            [class^="color-"]{
+                width: 20px;
+                height: 20px;
+                margin-right: 5px;
+                outline: solid 1px $white;
+            }
+            &-1{
+                background: #CA0813;
+            }
+            &-2{
+                background: #FC361C;
+            }
+            &-3{
+                background: #FC6620;
+            }
+            &-4{
+                background: #FD9827;
+            }
+            &-5{
+                background: #FECB2E;
+            }
+            &-6{
+                background: #FFFD71;
+            }
+            &-7{
+                background: #3CCA3E;
+            }
+            &-8{
+                background: #A7E7A8;
+            }
+        }
+    }
     svg{
         position: absolute;
         cursor: move;
@@ -11,7 +62,8 @@
         left: -500px;
     }
     path:hover{
-        fill: red!important;
+        opacity: 0.6;
+        // stroke: red!important;
         // transform: scale(1.1);
     }
 }

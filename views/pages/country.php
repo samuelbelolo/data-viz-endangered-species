@@ -15,7 +15,7 @@
                 <img src="<?= URL ?>dist/img/test_region.png" alt="">
             </div>
             <div class="back-link">
-                <a href="#" title="Go to the map">
+                <a href="<?= URL ?>" title="Go to the map">
                     <img src="<?= URL ?>dist/img/world_minia.png" alt="">
                     <p>Back to the map !</p>
                 </a>

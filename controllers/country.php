@@ -34,13 +34,13 @@
     foreach ($categoryCountArray['count'] as $key => $value) {
         $categoryCountArray['ratio'][$key] = $value/$countSpecies;
     }
-    echo '<pre>';
-    print_r($categoryCountArray);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($categoryCountArray);
+    // echo '</pre>';
 
-    echo '<pre>';
-    print_r($countryArray);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($countryArray);
+    // echo '</pre>';
     // foreach ($variable as $key => $value) {
     //     # code...
     // }
@@ -64,4 +64,4 @@
     // echo '</pre>';
 
 
-    // include('./views/pages/region.php');
+    include('./views/pages/country.php');

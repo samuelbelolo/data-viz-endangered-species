@@ -88,14 +88,49 @@ window.addEventListener('mousemove', (_event) => {
 const $paths = $mapSvg.querySelectorAll('path');
 
 for (const _$path of $paths) {
+    const countryCode = _$path.getAttribute('id')
+    const countryName = Object.keys(countryNames).find(key => countryNames[key] === countryCode);
+    let sanitizedCountryName
+    if (countryName) {
+        sanitizedCountryName = countryName.toLowerCase()
+    }
+    
+    
+    let fill = ''
+    if (countryCodes[countryCode] > 7000) {
+        fill = '#CA0813'
+    }
+    else if (countryCodes[countryCode] > 5000) {
+        fill = '#FC361C'
+    }
+    else if (countryCodes[countryCode] > 3000) {
+        fill = '#FC6620'
+    }
+    else if (countryCodes[countryCode] > 2000) {
+        fill = '#FD9827'
+    }
+    else if (countryCodes[countryCode] > 1500) {
+        fill = '#FECB2E'
+    }
+    else if (countryCodes[countryCode] > 1000) {
+        fill = '#FFFD71'
+    }
+    else if (countryCodes[countryCode] > 500) {
+        fill = '#3CCA3E'
+    }
+    else {
+        fill = '#A7E7A8'
+    }
+    
     const $link = document.createElementNS("http://www.w3.org/2000/svg",'a')
-    $link.setAttribute('href', 'https://alphonsebouy.fr')
+    $link.setAttribute('href', `${URL}${sanitizedCountryName}`)
     
     // const newPath = _$path.cloneNode();
     
     $link.appendChild(_$path)
     $mapSvg.appendChild($link)
-    // _$path.style.fill = 'blue';
+    _$path.style.fill = fill;
 }
 
 
+console.log(countryCodes.FR)
