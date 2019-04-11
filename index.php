@@ -30,7 +30,7 @@ $countryArray = ApiRequest($countryNameURL, 604800);
 
 foreach ($countryArray->results as $key => $value) {
     // SPIECES
-    if (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'\/[a-z _]+[\/]?$/', $q)) {
+    if (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'\/[a-z _.]+[\/]?$/', $q)) {
         $controller = 'species';
     }
     elseif (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'[\/]?$/', $q)) {
