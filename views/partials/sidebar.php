@@ -7,9 +7,13 @@
         
     </div>
     <div class="region__sidebar__content">
-        <h1>Northern Africa</h1>
+        <?php if($controller == 'country'): ?>
+            <h1><?= $country ?></h1>
+        <?php else: ?>
+            <h2><?= $country ?></h2>
+        <?php endif; ?>
         <div class="img-container">
-            <img src="<?= URL ?>dist/img/test_region.png" alt="">
+            <?php include './views/partials/world_svg.php' ?>
         </div>
         <div class="back-link">
             <a href="<?= URL ?>" title="Go to the map">

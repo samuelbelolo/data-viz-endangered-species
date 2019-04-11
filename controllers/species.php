@@ -64,8 +64,8 @@
     $isFreshWaterSystem = $speciesInfosArray['general'][0]->freshwater_system == '1'? true : false;
     $isTerrestrialSystem = $speciesInfosArray['general'][0]->terrestrial_system == '1'? true : false;
     
-    echo '<pre>';
-    print_r($speciesInfosArray);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($speciesInfosArray);
+    // echo '</pre>';
     
     include './views/pages/species.php';

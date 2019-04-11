@@ -34,9 +34,9 @@
     foreach ($categoryCountArray['count'] as $key => $value) {
         $categoryCountArray['ratio'][$key] = $value/$countSpecies;
     }
-    // echo '<pre>';
-    // print_r($categoryCountArray);
-    // echo '</pre>';
+    echo '<pre>';
+    print_r($categoryCountArray);
+    echo '</pre>';
 
     // echo '<pre>';
     // print_r($countryArray);

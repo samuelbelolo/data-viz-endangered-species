@@ -9,6 +9,11 @@ const windowSizes = {
     height: window.innerHeight
 }
 
+window.addEventListener('resize', () => {
+    windowSizes.width = window.innerWidth
+    windowSizes.height = window.innerHeight
+})
+
 if ($mapSvg) {
     const mouseDown = {
         x: 0,
@@ -93,7 +98,7 @@ if ($mapSvg) {
         const countryName = Object.keys(countryNames).find(key => countryNames[key] === countryCode);
         let sanitizedCountryName
         if (countryName) {
-            sanitizedCountryName = countryName.toLowerCase()
+            sanitizedCountryName = countryName.toLowerCase().split(' ').join('_')
         }
 
 

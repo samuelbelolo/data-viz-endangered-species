@@ -1,0 +1,146 @@
+.region__sidebar{
+    background: $dark-blue;
+    position: relative;
+    height: 100vh;
+    width: 28%;
+    &__header{
+        height: 10vh;
+        background: $red;
+        padding: 20px;
+        button.menu{
+            outline: none;
+            padding: 0;
+            width: 36px;
+            height: 25px;
+            cursor: pointer;
+            border: none;
+            box-shadow: none;
+            background: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .bar{
+                height: 2px;
+                width: 100%;
+                background: $white;
+                border-radius: 5px;
+                position: relative;
+                &::after, &::before{
+                    content: '';
+                    width: 100%;
+                    height: 100%;
+                    background: $white;
+                    position: absolute;
+                    left: 0;
+                    top: -10px;
+                    transform-origin: left;
+                    transition: transform 0.2s ease-out;
+                }
+                &::after{
+                    top: 12px;
+                }
+            }
+            &.menu-open{
+                .bar{
+                    background: $red;
+                    &::before{
+                        transform: rotate(37deg);
+                    }
+                    &::after{
+                        transform: rotate(-37deg);
+                    }
+                }
+            }
+        }
+    }
+    &__content{
+        height: 90vh;
+        color: $white;
+        padding: 2rem 5rem; 
+        position: relative;
+        h1, h2{
+            font-size: 3.6rem;
+            text-align: center;
+            text-transform: capitalize;
+        }
+        .img-container{
+            text-align: center;
+            margin-top: 10rem;
+            width: calc(100% + 7rem);
+            transform: translateX(-3.5rem);
+            svg{
+                position: relative;
+                path{
+                    &.selected{
+                        fill: $red;
+                    }
+                }
+            }
+        }
+        .back-link{
+            position: absolute;
+            bottom: 5rem;
+            left: 5rem;
+            a{
+                color: inherit;
+                text-decoration: none;
+                display: flex;
+                p{
+                    margin-top: -3rem;
+                    margin-left: -2rem;
+                    padding-left: 30px;
+                    position: relative;
+                    &::before{
+                        content: '';
+                        position: absolute;
+                        top: 5px;
+                        left: 0;
+                        width: 27px;
+                        height: 27px;
+                        background: url(../img/back-arrow.png);
+                        transform: rotate(-40deg);
+                    }
+                }
+                &:hover p{
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .full-menu{
+        position: absolute;
+        top: 10vh;
+        left: 0;
+        z-index: 10;
+        width: 100%;
+        height: 90vh;
+        background: $dark-red;
+        padding: 10rem 8rem;
+        transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+        transform: translateX(-100%);
+        &.is-open{
+            transform: translateX(0);
+        }
+        nav{
+            ul{
+                margin: 0;
+                padding: 0;
+                li{
+                    margin-bottom: 3rem;
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+                    a{
+                        text-decoration: none;
+                        color: $white;
+                        font-weight: bold;
+                        font-size: 4rem;
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,13 +1,30 @@
+<?php
+$country = str_replace('_', ' ', explode('/',$_GET['q'])[0]);
+?>
+
 <?php include './views/partials/header.php' ?>
+
+<script>
+    const countryCode = <?= json_encode($countryArray->country) ?>;
+</script>
 
 <div class="region">
     <?php include './views/partials/sidebar.php' ?>
     <div class="region__scroll-content">
         <div class="region__scroll-content__stats">
             <h2>Statistics</h2>
-            
+            <div class="container">
+                <div class="total-count">
+                    <h3>Endangered Animals in <span><?= $country ?><span></h3>
+                    <p><?= $countryArray->count ?></p>
+                </div>
+                <div class="donut-chart">
+                    <h3>Percentage by category of endangerment</h3>
+                </div>
+            </div>
         </div>
         <div class="region__scroll-content__header">
+            <h2>Browse the animals</h2>
             <div class="filter">You can filter here</div>
             <form action="#" method="post">
                 <div class="category">
@@ -129,5 +146,8 @@
         </div>
     </div>
 </div>
-
+<script>
+    const count = <?= json_encode($categoryCountArray['count']) ?>;    
+</script>
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <?php include './views/partials/footer.php'; ?>
