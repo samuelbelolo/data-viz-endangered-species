@@ -11,23 +11,29 @@
     */
     $countSpecies = $countryArray->count;
     $categoryCountArray = array(
-        'DD' => 0,
-        'LC' => 0,
-        'NT' => 0,
-        'VU' => 0,
-        'EN' => 0,
-        'CR' => 0,
-        'EW' => 0,
-        'EX' => 0,
-        'LR/lc' => 0,
-        'LR/nt' => 0,
-        'LR/cd' => 0
+        'count' => array(
+            'DD' => 0,
+            'LC' => 0,
+            'NT' => 0,
+            'VU' => 0,
+            'EN' => 0,
+            'CR' => 0,
+            'EW' => 0,
+            'EX' => 0,
+            'LR/lc' => 0,
+            'LR/nt' => 0,
+            'LR/cd' => 0
+        ),
+        'ratio' => array()
     );
 
     foreach ($countryArray->result as $key => $value) {
-        $categoryCountArray[$value->category]++;
+        $categoryCountArray['count'][$value->category]++;
     }
 
+    foreach ($categoryCountArray['count'] as $key => $value) {
+        $categoryCountArray['ratio'][$key] = $value/$countSpecies;
+    }
     echo '<pre>';
     print_r($categoryCountArray);
     echo '</pre>';
