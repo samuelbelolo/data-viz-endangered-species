@@ -3,11 +3,37 @@
     *   API 
     */
 
-    // $countryNameURL = 'https://apiv3.iucnredlist.org/api/v3/country/list?token='.token;
-    // $countryArray = ApiRequest($countryNameURL, 604800);
+    $countrySpeciesURL = 'https://apiv3.iucnredlist.org/api/v3/country/getspecies/'.$_GET['country'].'?token='.token;
+    $countryArray = ApiRequest($countrySpeciesURL, 604800);
+
+    /**
+    *   VALUES 
+    */
+    $countSpecies = $countryArray->count;
+    $categoryCountArray = array(
+        'DD' => 0,
+        'LC' => 0,
+        'NT' => 0,
+        'VU' => 0,
+        'EN' => 0,
+        'CR' => 0,
+        'EW' => 0,
+        'EX' => 0,
+        'LR/lc' => 0,
+        'LR/nt' => 0,
+        'LR/cd' => 0
+    );
+
+    foreach ($countryArray->result as $key => $value) {
+        $categoryCountArray[$value->category]++;
+    }
 
     echo '<pre>';
-    print_r($_GET);
+    print_r($categoryCountArray);
+    echo '</pre>';
+
+    echo '<pre>';
+    print_r($countryArray);
     echo '</pre>';
     // foreach ($variable as $key => $value) {
     //     # code...
