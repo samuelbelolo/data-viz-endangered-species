@@ -2,6 +2,14 @@
 
 $title = 'My Website';
 
+$countryNameURL = 'https://apiv3.iucnredlist.org/api/v3/country/list?token='.token;
+$countryArray = ApiRequest($countryNameURL, 604800);
+
+echo '<pre>';
+print_r($countryArray);
+echo '</pre>';
+
+
 
 /**
  * Exemple of POST method
@@ -35,4 +43,4 @@ $title = 'My Website';
 // $returnedData = $query->fetchAll();
 
 
-include './views/pages/home.php';
+// include('./views/pages/home.php');
