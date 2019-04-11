@@ -1,0 +1,288 @@
+.region{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    &__sidebar{
+        background: $dark-blue;
+        position: relative;
+        height: 100vh;
+        width: 28%;
+        &__header{
+            height: 10vh;
+            background: $red;
+            padding: 20px;
+            button.menu{
+                outline: none;
+                padding: 0;
+                width: 36px;
+                height: 25px;
+                cursor: pointer;
+                border: none;
+                box-shadow: none;
+                background: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .bar{
+                    height: 2px;
+                    width: 100%;
+                    background: $white;
+                    border-radius: 5px;
+                    position: relative;
+                    &::after, &::before{
+                        content: '';
+                        width: 100%;
+                        height: 100%;
+                        background: $white;
+                        position: absolute;
+                        left: 0;
+                        top: -10px;
+                        transform-origin: left;
+                        transition: transform 0.2s ease-out;
+                    }
+                    &::after{
+                        top: 12px;
+                    }
+                }
+                &.menu-open{
+                    .bar{
+                        background: $red;
+                        &::before{
+                            transform: rotate(37deg);
+                        }
+                        &::after{
+                            transform: rotate(-37deg);
+                        }
+                    }
+                }
+            }
+        }
+        &__content{
+            height: 90vh;
+            color: $white;
+            padding: 2rem 5rem; 
+            position: relative;
+            h1{
+                font-size: 3.6rem;
+                text-align: center;
+            }
+            .img-container{
+                text-align: center;
+                margin-top: 10rem;
+                img{
+                    width: 90%;
+                }
+            }
+            .back-link{
+                position: absolute;
+                bottom: 5rem;
+                left: 5rem;
+                a{
+                    color: inherit;
+                    text-decoration: none;
+                    display: flex;
+                    p{
+                        margin-top: -3rem;
+                        margin-left: -2rem;
+                        padding-left: 30px;
+                        position: relative;
+                        &::before{
+                            content: '';
+                            position: absolute;
+                            top: 5px;
+                            left: 0;
+                            width: 27px;
+                            height: 27px;
+                            background: url(../img/back-arrow.png);
+                            transform: rotate(-40deg);
+                        }
+                    }
+                    &:hover p{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        .full-menu{
+            position: absolute;
+            top: 10vh;
+            left: 0;
+            z-index: 10;
+            width: 100%;
+            height: 90vh;
+            background: $dark-red;
+            padding: 10rem 8rem;
+            transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+            transform: translateX(-100%);
+            &.is-open{
+                transform: translateX(0);
+            }
+            nav{
+                ul{
+                    margin: 0;
+                    padding: 0;
+                    li{
+                        margin-bottom: 3rem;
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                        a{
+                            text-decoration: none;
+                            color: $white;
+                            font-weight: bold;
+                            font-size: 4rem;
+                            &:hover{
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__scroll-content{
+        flex: 1;
+        padding: 0px 10rem;
+        overflow-y: scroll;
+        &__header{
+            margin-top: 5rem;
+            .filter{
+                margin-left: 10rem;
+                display: inline-block;
+                position: relative;
+                margin-bottom: 2rem;
+                &::after{
+                    content: '';
+                    width: 27px;
+                    height: 27px;
+                    position: absolute;
+                    top: 5px;
+                    right: -30px;
+                    background: url(../img/back-arrow-black.png);
+                    transform: scaleX(-1) rotate(-45deg);
+                }
+            }
+            form{
+                display: flex;
+                justify-content: space-between;
+                .category{
+                    margin-right: 10px;
+                    &:hover{
+                        label{
+                            transform: scale(1.4);
+                            background: $red;
+                            color: $white;
+                            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+                        }
+                    }
+                    &:last-child{
+                        margin-right: 0;
+                    }
+                    input{
+                        display: none;
+                    }
+                    label{
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 60px;
+                        width: 100%;
+                        text-align: center;
+                        padding: 1rem;
+                        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                    }
+                    input:checked+label{
+                        background: $red;
+                        color: $white;
+                    }
+                }
+            }
+        }
+        &__tiles{
+            margin-top: 5rem;
+            display: flex;
+            flex-wrap: wrap;
+            &>a{
+                display: block;
+                width: 30%;
+                text-decoration: none;
+                color: inherit;
+                margin-right: 5%;
+                margin-bottom: 5rem;
+                &:nth-child(3n + 3){
+                    margin-right: 0;
+                }
+                &:hover{
+                    .img-container img{
+                        transform: scale(1.05);
+                    }
+                    h3{
+                        text-decoration: underline;
+                    }
+                    .region__scroll-content__tiles__single-tile{
+                        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+                    }
+                }
+            }
+            &__single-tile{
+                background: $light-white;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                .img-container{
+                    width: 100%;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        transition: transform 0.2s;
+                    }
+                }
+                .description{
+                    padding: 1rem 2rem;
+                    .details{
+                        display: flex;
+                        justify-content: space-between;
+                        span{
+                            font-size: 1rem;
+                            text-transform: uppercase;
+                        }
+                    }
+                    h3{
+                       font-size: 2rem;
+                       &+p{
+                           font-size: 1.4rem;
+                       }
+                    }
+                    .status{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-top: 3rem;
+                        &__arrow{
+                            display: flex;
+                            width: 100%;
+                            align-items: center;
+                            justify-content: space-between;
+                            img{
+                                transform: rotate(-45deg);
+                                width: 30px;
+                                // margin-right: 10px;
+                            }
+                        }
+                        &__danger{
+                            background: $red;
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: $white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

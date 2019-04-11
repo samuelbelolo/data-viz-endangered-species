@@ -1,8 +1,17 @@
 .map-container{
+    position: relative;
     width: 200%;
     height: 100vh;
+    margin: 0 auto;
     overflow: hidden;
-    g:hover path{
-        fill: red;
+    svg{
+        position: absolute;
+        cursor: move;
+        top: -600px;
+        left: -500px;
+    }
+    path:hover{
+        fill: red!important;
+        // transform: scale(1.1);
     }
 }
