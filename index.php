@@ -34,7 +34,8 @@ foreach ($countryArray->results as $key => $value) {
         $controller = 'species';
     }
     elseif ($q == strtolower($value->country)) {
-        $controller = 'region';
+        $controller = 'country';
+        $_GET['country'] = $value->isocode;
     }
 }
 
