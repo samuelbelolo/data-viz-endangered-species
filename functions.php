@@ -31,28 +31,32 @@
     return $result;
   }
 
-  function selectRandomSpiecies($array,$count,$range){
-        $newArray = array();
+    function selectRandomSpiecies($array,$range){
+        $newArray = array(
+            
+        );
+        if ($array['count']<$range) {
+            $range = $array['count'];
+        }
         for ($i=0; $i < $range ; $i++) {
             // Generate Random key
-            $key = rand(0,$count);
+            $key = rand(0,$array['count']-2);
             // Add random spieces to a new array
-            $newArray[]=$array[$key];
+            $newArray[]['names']=$array['names'][$key];
             // Remove selected one from original array
-            unset($array[$key]);
+            unset($array['names'][$key]);
             // Reindex of the old array
-            $array = array_values($array);
+            $array['names'] = array_values($array['names']);
             // Decrease the count number of the original array
-            $count -= 1;
+            $array['count']--;
         }
-    
     $result = array(
         'newArray' => $newArray,
-        'oldArray' => $array,
-        'newCount' => $count
+        'oldArray' => $array['names'],
+        'newCount' => $array['count']
     );
     return $result;
-  }
+    }
 
   function addUrlImage($array){
         foreach ($array as $key => $value) {
