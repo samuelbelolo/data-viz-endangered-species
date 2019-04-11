@@ -117,7 +117,7 @@
     // $_POST['isNextSpecies'] = 'true';
     // $_POST['array'] = $selectedSpeciesArray;
 
-    if ($_POST['isNextSpecies'] == 'true') {
+    if (!empty($_POST['isNextSpecies']) && $_POST['isNextSpecies'] == 'true') {
         echo '<pre>';
         print_r($_POST['array']['oldArray']);
         echo '</pre>';
