@@ -14,6 +14,11 @@
 
     $generalInfosArray = ApiRequest($generalInfosURL, 604800);
 
+    if (empty($generalInfosArray->result)) {
+        include('./controllers/404.php');
+        die();
+    }
+
     // Narrative
 
     $narrativeURL = 'https://apiv3.iucnredlist.org/api/v3/species/narrative/'.$speciesName.'?token='.token;
