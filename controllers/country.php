@@ -3,9 +3,11 @@
     *   API 
     */
 
+    $sortBy = 'EX';
+
+
     $countrySpeciesURL = 'https://apiv3.iucnredlist.org/api/v3/country/getspecies/'.$_GET['country'].'?token='.token;
     $countryArray = ApiRequest($countrySpeciesURL, 604800);
-
     /**
     *   VALUES 
     */
@@ -74,7 +76,7 @@
 
     // SORT BY VALUES
 
-    $sortBy = 'CR';
+    
 
     $selectedSpeciesArray = selectRandomSpiecies($categoryCountArray['category'][$sortBy],6);
 
@@ -100,12 +102,47 @@
 
     $selectedSpeciesArray['newArray'] = addUrlImage($selectedSpeciesArray['newArray']);
 
+    // echo '<pre>';
+    // print_r($selectedSpeciesArray);
+    // echo '</pre>';
+    // die();
+    $_POST['isNextSpecies'] = 'true';
+    $_POST['array'] = $selectedSpeciesArray;
+
+
+    if (!empty($_POST['isNextSpecies']) && $_POST['isNextSpecies']== 'true') {
+        $selectedSpeciesArray = selectRandomSpiecies($_POST['array']['oldArray'],6);
+
+        /**
+        *   Get Infos Of Species
+        */
+        foreach ($selectedSpeciesArray['newArray'] as $key => $value) {
+            // Make URL
+            $speciesInfosUrl='https://apiv3.iucnredlist.org/api/v3/species/'.$value['names'].'?token='.token;
+            // Make Request
+            $speciesInfosArray = ApiRequest($speciesInfosUrl, 604800);
+            // Add Infos to general Array
+            foreach ($speciesInfosArray->result[0] as $keySpecies => $value) {
+                $selectedSpeciesArray['newArray'][$key][$keySpecies] = $value;
+            }
+        }
+
+
+        /**
+        *  Add Image URL
+        */
+
+        $selectedSpeciesArray['newArray'] = addUrlImage($selectedSpeciesArray['newArray']);
+
+        echo '<pre>';
+        print_r(json_encode($selectedSpeciesArray));
+        echo '</pre>';
+    }
 
     
-    
-    echo '<pre>';
-    print_r($selectedSpeciesArray['newArray']);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($selectedSpeciesArray['newArray']);
+    // echo '</pre>';
 
     // echo '<pre>';
     // print_r($countryArray);
