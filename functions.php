@@ -1,6 +1,6 @@
 <?php
   // FUNCTIONS
-  function ApiRequest($url, $delay){
+  function ApiRequest($url, $delay, $returnJSON = false){
 
     // Cache info
     $cacheKey = md5($url);
@@ -25,9 +25,9 @@
         // Save API in cache
         file_put_contents($cachePath, $result);
     }
-
-    $result= json_decode($result);
-
+    if (!$returnJSON) {
+        $result= json_decode($result);
+    }
     return $result;
   }
 
@@ -52,8 +52,10 @@
         }
     $result = array(
         'newArray' => $newArray,
-        'oldArray' => $array['names'],
-        'newCount' => $array['count']
+        'oldArray' => array(
+            'names' => $array['names'],
+            'count' => $array['count']
+        ),
     );
     return $result;
     }
@@ -67,9 +69,6 @@
             // echo $wikipediaUrl;
             // echo "<br>";
             $data = ApiRequest($wikipediaUrl, 604800);
-            // echo '<pre>';
-            // print_r($data);
-            // echo '</pre>';
             
             // For every result 
             foreach ($data->query->pages as $resultKey => $resultValue) {
