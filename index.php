@@ -9,7 +9,7 @@ include('./functions.php');
  * Routing
  */
 
-define('URL','http://localhost/si_back/');
+define('URL','http://localhost:8888/si_back/');
 define('token', '9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee');
 
 //Get q param
@@ -30,10 +30,10 @@ $countryArray = ApiRequest($countryNameURL, 604800);
 
 foreach ($countryArray->results as $key => $value) {
     // SPIECES
-    if (preg_match('/^'.strtolower($value->country).'\/[a-zA-Z ]+$/', $q)) {
+    if (preg_match('/^'.strtolower($value->country).'\/[a-zA-Z ]+[\/]?$/', $q)) {
         $controller = 'species';
     }
-    elseif ($q == strtolower($value->country)) {
+    elseif (preg_match('/^'.strtolower($value->country).'[\/]?$/', $q)) {
         $controller = 'country';
         $_GET['country'] = $value->isocode;
     }
