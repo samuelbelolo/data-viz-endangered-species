@@ -68,8 +68,43 @@
     foreach ($categoryCountArray['category'] as $key => $value) {
         $categoryCountArray['ratio'][$key] = $value['count']/$countSpecies;
     }
+    // echo '<pre>';
+    // print_r($categoryCountArray);
+    // echo '</pre>';
+
+    // SORT BY VALUES
+
+    $sortBy = 'CR';
+
+    $selectedSpeciesArray = selectRandomSpiecies($categoryCountArray['category'][$sortBy],6);
+
+
+    /**
+    *   Get Infos Of Species
+    */
+    foreach ($selectedSpeciesArray['newArray'] as $key => $value) {
+        // Make URL
+        $speciesInfosUrl='https://apiv3.iucnredlist.org/api/v3/species/'.$value['names'].'?token='.token;
+        // Make Request
+        $speciesInfosArray = ApiRequest($speciesInfosUrl, 604800);
+        // Add Infos to general Array
+        foreach ($speciesInfosArray->result[0] as $keySpecies => $value) {
+            $selectedSpeciesArray['newArray'][$key][$keySpecies] = $value;
+        }
+    }
+
+
+    /**
+    *  Add Image URL
+    */
+
+    $selectedSpeciesArray['newArray'] = addUrlImage($selectedSpeciesArray['newArray']);
+
+
+    
+    
     echo '<pre>';
-    print_r($categoryCountArray);
+    print_r($selectedSpeciesArray['newArray']);
     echo '</pre>';
 
     // echo '<pre>';
@@ -97,4 +132,4 @@
 
 
 
-    include('./views/pages/country.php');
+    // include('./views/pages/country.php');
