@@ -22,28 +22,18 @@ if($q == 'home'){
     $controller = 'home';
 }
 
-// REGION
+// Country
 
-$regionArray = array(
-    'northern_africa',
-    'eastern_africa',
-    'persian_gulf',
-    'europe',
-    'southern_africa',
-    'mediterranean',
-    'western_africa',
-    'central_africa',
-    'global',
-    'gulf_of_mexico',
-    'africa',
-    'northeastern_africa'
-);
-foreach ($regionArray as $key => $value) {
-    // SPIECES  REGION
-    if (preg_match('/^'.$value.'\/[a-zA-Z ]+$/', $q)) {
+$countryNameURL = 'https://apiv3.iucnredlist.org/api/v3/country/list?token='.token;
+$countryArray = ApiRequest($countryNameURL, 604800);
+
+
+foreach ($countryArray->results as $key => $value) {
+    // SPIECES
+    if (preg_match('/^'.strtolower($value->country).'\/[a-zA-Z ]+$/', $q)) {
         $controller = 'species';
     }
-    elseif ($q == $value) {
+    elseif ($q == strtolower($value->country)) {
         $controller = 'region';
     }
 }
