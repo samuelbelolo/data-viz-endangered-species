@@ -18,9 +18,9 @@ $q = !empty($_GET['q']) ? $_GET['q'] : 'home';
 //define controller
 $controller = '404';
 
-// if($q == 'home'){
-//     $controller = 'home';
-// }
+if($q == 'home'){
+    $controller = 'home';
+}
 
 // REGION
 
