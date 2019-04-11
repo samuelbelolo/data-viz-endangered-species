@@ -148,9 +148,9 @@
         // print_r($selectedSpeciesArray['newArray']);
         // echo '</pre>';
 
-        // echo '<pre>';
-        // print_r(json_encode($selectedSpeciesArray));
-        // echo '</pre>';
+        echo '<pre>';
+        print_r(json_encode($selectedSpeciesArray));
+        echo '</pre>';
     }
 
     
