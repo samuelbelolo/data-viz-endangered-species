@@ -2,23 +2,7 @@
 
 <div class="about">
     
-    <header>
-        <div class="naviguation">
-            <ul>
-                <li>
-                    <img src="<?= URL ?>dist/img/paw.png" alt="logo">
-                    <a href="<?= URL ?>" title="Home">RED LIST</a>
-                </li>
-                <li>
-                    <a href="<?= URL ?>map" title="Map">MAP</a>
-                </li>
-                <li>
-                    <a href="<?= URL ?>about">ABOUT</a>
-                </li>
-    
-            </ul>  
-        </div>
-    </header>
+    <?php include './views/partials/navigation.php' ?>
     
     
     <div class="container">
@@ -78,7 +62,9 @@
                     <p>Come and see our work !</p>
                     <img src="<?= URL ?>dist/img/arrow.svg" alt="arrow">  
                 </div>
-                <a href="<?= URL ?>map" title="The map"><img src="<?= URL ?>dist/img/map.png" alt="map"></a>
+                <a href="<?= URL ?>map" title="The map">
+                    <?php include './views/partials/world_svg.php' ?>
+                </a>
             </div>
     
         </div>

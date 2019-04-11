@@ -30,7 +30,7 @@ if ($mapSvg) {
         y: 0
     }
 
-    const oldPos = {}
+    const $description = document.querySelector('.map-container .country-description')
 
     let isDown = false
 
@@ -61,6 +61,9 @@ if ($mapSvg) {
         // else {
         //     pos.y = $mapSvg.getBoundingClientRect().top - ((_event.clientY - mouseDown.y) / windowSizes.height)*100
         // }
+        
+        $description.style.left = `${_event.clientX + 5}px`
+        $description.style.top = `${_event.clientY + 5}px`
 
 
         pos.x = (_event.clientX - mouseDown.x) / windowSizes.width
@@ -100,6 +103,14 @@ if ($mapSvg) {
         if (countryName) {
             sanitizedCountryName = countryName.toLowerCase().split(' ').join('_')
         }
+        
+        _$path.addEventListener('mouseenter', () => {
+            $description.innerHTML = `<strong>${countryName}</strong><br>${countryCodes[countryCode]} endangered species`
+            $description.style.opacity = '1'
+        })
+        _$path.addEventListener('mouseleave', () => {
+            $description.style.opacity = '0'
+        })
 
 
         let fill = ''

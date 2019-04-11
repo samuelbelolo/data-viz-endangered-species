@@ -1,3 +1,54 @@
+header.nav img, .article .title img{
+    width:5%;
+    height:3%;
+}
+
+
+header.nav a{
+    font-family: 'Roboto', sans-serif;
+    font-weight:700;
+    font-size:24px;
+    color: inherit;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+
+.naviguation ul{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0px;
+    margin: 0;
+}
+
+
+.naviguation ul li{
+    list-style: none;
+    padding-right:40px;
+}
+
+ul li:first-child{
+    display:flex;
+    align-items: center;
+    color:#D72C26;
+    cursor: pointer;
+    a:hover{
+        text-decoration: none;
+    }
+}
+
+
+ul li:nth-child(2), ul li:nth-child(3){
+    display:flex;
+    color:#C5BFBF;
+    cursor:pointer;
+}
+
+.naviguation ul li:last-child{
+    padding-right: 0;
+}
 .about{
     
     padding: 4rem 10rem;
@@ -8,57 +59,6 @@
     }
     
     
-    header img, .article .title img{
-        width:5%;
-        height:3%;
-    }
-    
-    
-    header a{
-        font-family: 'Roboto', sans-serif;
-        font-weight:700;
-        font-size:24px;
-        color: inherit;
-        text-decoration: none;
-        &:hover{
-            text-decoration: underline;
-        }
-    }
-    
-    .naviguation ul{
-        display:flex;
-        justify-content: space-between;
-        align-items: center;
-        padding:0px;
-        margin: 0;
-    }
-    
-    
-    .naviguation ul li{
-        list-style: none;
-        padding-right:40px;
-    }
-    
-    ul li:first-child{
-        display:flex;
-        align-items: center;
-        color:#D72C26;
-        cursor: pointer;
-        a:hover{
-            text-decoration: none;
-        }
-    }
-    
-    
-    ul li:nth-child(2), ul li:nth-child(3){
-        display:flex;
-        color:#C5BFBF;
-        cursor:pointer;
-    }
-    
-    .naviguation ul li:last-child{
-        padding-right: 0;
-    }
     
     
     h2, .article p{
@@ -114,7 +114,25 @@
         position: relative;
         display:flex;
         justify-content: center;    
-        margin-top:10rem;
+        margin-top:15rem;
+        a{
+            width: 30vw;
+            svg{
+                width: 100%;
+                path{
+                    fill: #44488A;
+                    stroke: #44488A;
+                }
+            }
+            &:hover{
+                svg{
+                    path{
+                        fill: $red;
+                        stroke: $red;
+                    }
+                }
+            }
+        }
     }
     
     .article-map .map .text{
@@ -142,12 +160,12 @@
         body{
             margin:10px;
         }
-        header img, .article .text .title img{
+        header.nav img, .article .text .title img{
             width:50px;
             height:50px;
         }
     
-        header p{
+        header.nav p{
             font-family: 'Roboto', sans-serif;
             font-weight:700;
             font-size:16px;

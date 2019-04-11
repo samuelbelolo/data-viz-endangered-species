@@ -1,10 +1,13 @@
 @import "config";
 @import "body";
 
+@import "views/loader";
+
 @import "views/sidebar";
 
 @import "views/map";
 @import "views/region";
 @import "views/species";
+@import "views/home";
 @import "views/about";
 

@@ -1,48 +1,17 @@
 <?php include './views/partials/header.php' ?>
-
-<div id="map" class="map-container">
-    <?php include './views/partials/world_svg.php' ?>
-    <div class="legend">
-        <h4>Number of endangered species</h4>
-        <div class="color">
-            <div class="color-1"></div>
-            <span>7000 +</span>
+<div class="home">
+    <?php include './views/partials/navigation.php' ?>
+    <div class="block">
+        <div class="text">
+            <p> <strong>Urgency</strong> <br> More than <b>27,000</b> species are threatened with <strong>extinction</strong>. <br> That is more than <b>27%</b> of all assessed species.</p>
         </div>
-        <div class="color">
-            <div class="color-2"></div>
-            <span>5000 +</span>
-        </div>
-        <div class="color">
-            <div class="color-3"></div>
-            <span>3000 +</span>
-        </div>
-        <div class="color">
-            <div class="color-4"></div>
-            <span>2000 +</span>
-        </div>
-        <div class="color">
-            <div class="color-5"></div>
-            <span>1500 +</span>
-        </div>
-        <div class="color">
-            <div class="color-6"></div>
-            <span>1000 +</span>
-        </div>
-        <div class="color">
-            <div class="color-7"></div>
-            <span>500 +</span>
-        </div>
-        <div class="color">
-            <div class="color-8"></div>
-            <span>1 +</span>
-        </div>
+        <div class="click">
+                <span>click here !</span>
+                <img class="arrow" src="<?= URL ?>dist/img/arrow.svg" alt="arrow">
+            </div>
+        <a class="map-link" href="<?= URL ?>map" title="The map">
+            <?php include './views/partials/world_svg.php' ?>
+        </a>
     </div>
 </div>
-
-<script>
-    const countryCodes = <?= json_encode($countryInfos['count']) ?>;
-    const countryNames = <?= json_encode($countryInfos['names']) ?>;
-    const URL = <?= json_encode(URL) ?>;
-</script>
-
 <?php include './views/partials/footer.php' ?>

@@ -2,6 +2,7 @@
 
 <div id="map" class="map-container">
     <?php include './views/partials/world_svg.php' ?>
+    <div class="country-description">Test</div>
     <div class="legend">
         <h4>Number of endangered species</h4>
         <div class="color">

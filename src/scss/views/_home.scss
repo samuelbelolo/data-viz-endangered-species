@@ -1,0 +1,80 @@
+.home{
+    
+    padding: 4rem 10rem;
+    background-color:#0E162D;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    .text {
+        display:flex;
+        height: 80%;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .text p {
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size: 22px;
+        line-height:180%;
+        color: white;
+    }
+
+
+    .block{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .map{
+
+        width: 508px;
+        height: 225px;
+    }
+
+    .arrow{
+        width: 88px;
+        height: 88px;
+    }
+
+
+    .click{
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 300px;
+        img{
+            transform: rotate(35deg);
+        }
+
+    }
+    
+    .map-link{
+        width: 30%;
+        svg{
+            width: 150%;
+            path{
+                fill: #44488A;
+                stroke: #44488A;
+            }
+        }
+        &:hover{
+            svg{
+                path{
+                    fill: $red;
+                    stroke: $red;
+                }
+            }
+        }
+    }
+
+    .click span{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 700;
+        font-size: 21px;
+        color: white;
+    }
+}
