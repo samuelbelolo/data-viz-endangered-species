@@ -30,12 +30,15 @@ $countryArray = ApiRequest($countryNameURL, 604800);
 
 foreach ($countryArray->results as $key => $value) {
     // SPIECES
-    if (preg_match('/^'.strtolower($value->country).'\/[a-zA-Z ]+[\/]?$/', $q)) {
+    if (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'\/[a-zA-Z ]+[\/]?$/', $q)) {
         $controller = 'species';
     }
-    elseif (preg_match('/^'.strtolower($value->country).'[\/]?$/', $q)) {
+    elseif (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'[\/]?$/', $q)) {
         $controller = 'country';
         $_GET['country'] = $value->isocode;
+        echo '<pre>';
+        print_r($_GET);
+        echo '</pre>';
     }
 }
 
