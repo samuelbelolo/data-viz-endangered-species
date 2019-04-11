@@ -1,5 +1,9 @@
 <?php
+/**
+*   Functions 
+*/
 
+include('./functions.php');
 
 /**
  * Routing
@@ -18,28 +22,24 @@ if($q == 'home'){
     $controller = 'home';
 }
 
-// REGION
+// Country
 
-$regionArray = array(
-    'northern_africa',
-    'eastern_africa',
-    'persian_gulf',
-    'europe',
-    'southern_africa',
-    'mediterranean',
-    'western_africa',
-    'central_africa',
-    'global',
-    'gulf_of_mexico',
-    'africa',
-    'northeastern_africa'
-);
-foreach ($regionArray as $key => $value) {
-    if ($q == $value) {
-        $controller = 'region';
+$countryNameURL = 'https://apiv3.iucnredlist.org/api/v3/country/list?token='.token;
+$countryArray = ApiRequest($countryNameURL, 604800);
 
+
+foreach ($countryArray->results as $key => $value) {
+    // SPIECES
+    if (preg_match('/^'.strtolower($value->country).'\/[a-zA-Z ]+$/', $q)) {
+        $controller = 'species';
+    }
+    elseif ($q == strtolower($value->country)) {
+        $controller = 'country';
+        $_GET['country'] = $value->isocode;
     }
 }
+
+
 
 
 //include controller
