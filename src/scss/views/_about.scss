@@ -1,0 +1,213 @@
+.about{
+    
+    padding: 4rem 10rem;
+    background-color:#0E162D;
+    
+    .container{
+        margin-top:50px;
+    }
+    
+    
+    header img, .article .title img{
+        width:5%;
+        height:3%;
+    }
+    
+    
+    header a{
+        font-family: 'Roboto', sans-serif;
+        font-weight:700;
+        font-size:24px;
+        color: inherit;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+    }
+    
+    .naviguation ul{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0px;
+        margin: 0;
+    }
+    
+    
+    .naviguation ul li{
+        list-style: none;
+        padding-right:40px;
+    }
+    
+    ul li:first-child{
+        display:flex;
+        align-items: center;
+        color:#D72C26;
+        cursor: pointer;
+        a:hover{
+            text-decoration: none;
+        }
+    }
+    
+    
+    ul li:nth-child(2), ul li:nth-child(3){
+        display:flex;
+        color:#C5BFBF;
+        cursor:pointer;
+    }
+    
+    .naviguation ul li:last-child{
+        padding-right: 0;
+    }
+    
+    
+    h2, .article p{
+    
+        color:#F4F4F4;
+    }
+    
+    h2{
+        font-family: 'Roboto', sans-serif;
+        font-weight:700;
+        font-size:3.6rem;
+    }
+    
+    .article p{
+        font-family: 'Roboto', sans-serif;
+        font-weight:300;
+        font-size: 1.8rem;
+        line-height: 150%;
+    }
+    
+    .article{
+        display:flex;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+    
+    .title{
+        display:flex;
+        align-items: center;
+    }
+    
+    .article > img{
+        width:20%;
+        height:20%;
+        margin:20px;
+    
+    }
+    
+    .article-map{
+        display:flex;
+        flex-direction: column;
+        a{
+            width: 100%;
+            text-align: center;
+            img{
+                width: 60%;
+            }
+        }
+        
+    }
+    
+    .article-map .map{
+        position: relative;
+        display:flex;
+        justify-content: center;    
+        margin-top:10rem;
+    }
+    
+    .article-map .map .text{
+        position: absolute;
+        top: -50%;
+        left: 5%;
+        display:flex;
+        flex-direction: column;
+        transform : rotate(-30deg);
+    }
+    
+    .article-map .text p{
+        font-size:21px;
+        font-weight:700;
+    }
+    
+    .article-map .text img{
+        width:15%;
+        height:15%;
+        transform: rotate(50deg);
+    }
+    
+    @media all and (orientation: portrait){
+    
+        body{
+            margin:10px;
+        }
+        header img, .article .text .title img{
+            width:50px;
+            height:50px;
+        }
+    
+        header p{
+            font-family: 'Roboto', sans-serif;
+            font-weight:700;
+            font-size:16px;
+        }
+    
+        .naviguation ul li{
+            list-style: none;
+            padding:10px;
+        }    
+    
+    
+        h1{
+            font-family: 'Roboto', sans-serif;
+            font-weight:700;
+            font-size:24px;
+        }
+        
+        .article p{
+            font-family: 'Roboto', sans-serif;
+            font-weight:300;
+            font-size:16px;
+        }
+    
+       
+    
+        .title{
+            display:flex;
+            margin-bottom:20px;
+        }
+    
+        .text{
+            display:flex;
+            flex-direction: column;
+            width:70%;
+        }
+    
+        .text img{
+            width:10%;
+            height:10%;
+    
+        }
+    
+        .article-map .text img{
+            
+            width:20px;
+            height:20px;
+            transform: rotate(80deg)
+        }
+        
+    
+        .article-map .text p{
+            font-size:16px;
+            font-weight:700;
+        }
+        
+        .article-map .text img{
+            width:30px;
+            height:30px;
+            transform: rotate(90deg);
+        }
+        
+    }
+}

@@ -23,6 +23,14 @@ if($q == 'home'){
     $controller = 'home';
 }
 
+if ($q == 'map') {
+    $controller = 'map';
+}
+
+if ($q == 'about') {
+    $controller = 'about';
+}
+
 // Country
 
 $countryNameURL = 'https://apiv3.iucnredlist.org/api/v3/country/list?token='.token;

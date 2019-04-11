@@ -1,4 +1,4 @@
-if (count) {
+if (typeof count !== 'undefined') {
     const countArray = [];
 
 

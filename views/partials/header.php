@@ -17,5 +17,3 @@
     <link rel="stylesheet" href="<?= URL ?>dist/css/app.css">
 </head>
 <body>
-    <header>
-    </header>
