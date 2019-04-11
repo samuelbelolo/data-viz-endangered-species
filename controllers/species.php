@@ -67,3 +67,5 @@
     echo '<pre>';
     print_r($speciesInfosArray);
     echo '</pre>';
+    
+    include './views/pages/species.php';
