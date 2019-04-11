@@ -1,5 +1,7 @@
 <?php
 $country = str_replace('_', ' ', explode('/',$_GET['q'])[0]);
+
+$species = $selectedSpeciesArray['newArray'];
 ?>
 
 <?php include './views/partials/header.php' ?>
@@ -15,7 +17,7 @@ $country = str_replace('_', ' ', explode('/',$_GET['q'])[0]);
             <h2>Statistics</h2>
             <div class="container">
                 <div class="total-count">
-                    <h3>Endangered Animals in <span><?= $country ?><span></h3>
+                    <h3>Endangered Species in <span><?= $country ?><span></h3>
                     <p><?= $countryArray->count ?></p>
                 </div>
                 <div class="donut-chart">
@@ -24,130 +26,80 @@ $country = str_replace('_', ' ', explode('/',$_GET['q'])[0]);
             </div>
         </div>
         <div class="region__scroll-content__header">
-            <h2>Browse the animals</h2>
+            <h2>Browse the species</h2>
             <div class="filter">You can filter here</div>
             <form action="#" method="post">
                 <div class="category">
-                    <input type="radio" name="cat" id="lc">
+                    <input checked type="radio" name="cat" id="lc" value="lc">
                     <label for="lc">Least Concern</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="nv">
+                    <input type="radio" name="cat" id="nv" value="nv">
                     <label for="nv">Never Threatened</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="vu">
+                    <input type="radio" name="cat" id="vu" value="vu">
                     <label for="vu">Vulnerable</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="en">
+                    <input type="radio" name="cat" id="en" value="en">
                     <label for="en">Endangered</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="ce">
+                    <input type="radio" name="cat" id="ce" value="ce">
                     <label for="ce">Critically Endangered</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="ew">
+                    <input type="radio" name="cat" id="ew" value="ew">
                     <label for="ew">Extinct in the wild</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="ex">
+                    <input type="radio" name="cat" id="ex" value="ex">
                     <label for="ex">Extinct</label>
                 </div>
             </form>
         </div>
         <div class="region__scroll-content__tiles">
-            <a href="#" title="Animal">    
-                <div class="region__scroll-content__tiles__single-tile">
-                    <div class="img-container">
-                        <img src="<?= URL ?>dist/img/test_img.png" alt="Test">
-                    </div>
-                    <div class="description">
-                        <div class="details">
-                            <span>ANIMALIA - ACTINOPTERYGII</span>
-                            <span>Global</span>
+            <?php foreach($species as $_single_species): ?>
+                <a href="<?= URL.explode('/',$_GET['q'])[0].'/'.strtolower(str_replace(' ', '_', $_single_species['scientific_name'])) ?>" title="<?= $_single_species['scientific_name'] ?>">    
+                    <div class="region__scroll-content__tiles__single-tile">
+                        <div class="img-container">
+                            <img src="<?= $_single_species['url'] ?>" alt="<?= $_single_species['main_common_name'] ?>">
                         </div>
-                        <h3>Lined Seahorse</h3>
-                        <p class="italic">Hippocampus erectus</p>
-                        <div class="status">
-                            <div class="status__arrow">
-                                <span>Decreasing</span>
-                                <img src="<?= URL ?>dist/img/arrow.png" alt="">
+                        <div class="description">
+                            <div class="details">
+                                <span><?= $_single_species['kingdom'] ?> - <?= $_single_species['class'] ?></span>
+                                <span><?= $_single_species['family'] ?></span>
+                            </div>
+                                <?php if(!empty($_single_species['main_common_name'])): ?>
+                                    <h3><?= $_single_species['main_common_name'] ?></h3>
+                                <?php else: ?>
+                                    <h3><?= $_single_species['scientific_name'] ?></h3>
+                                <?php endif; ?>
+                                <?php if(!empty($_single_species['main_common_name'])): ?>
+                                    <p class="italic"><?= $_single_species['scientific_name'] ?></p>
+                                <?php endif; ?>
+                            <div class="status">
+                                <div class="status__arrow">
+                                    <span><?= $_single_species['population_trend'] ?></span>
+                                    <?php if($_single_species['population_trend'] == 'Decreasing'): ?>
+                                        <img src="<?= URL ?>dist/img/arrow_decrease.png" alt="Decreasing">
+                                    <?php elseif($_single_species['population_trend'] == 'Increasing'): ?>
+                                        <img src="<?= URL ?>dist/img/arrow_increase.png" alt="Increasing">
+                                    <?php else: ?>
+                                        <img src="<?= URL ?>dist/img/stable.png" alt="Stable">
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="#" title="Animal">
-                <div class="region__scroll-content__tiles__single-tile">
-                    <div class="img-container">
-                        <img src="<?= URL ?>dist/img/test_img.png" alt="Test">
-                    </div>
-                    <div class="description">
-                        <div class="details">
-                            <span>ANIMALIA - ACTINOPTERYGII</span>
-                            <span>Global</span>
-                        </div>
-                        <h3>Lined Seahorse</h3>
-                        <p class="italic">Hippocampus erectus</p>
-                        <div class="status">
-                            <div class="status__arrow">
-                                <span>Decreasing</span>
-                                <img src="<?= URL ?>dist/img/arrow.png" alt="">
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#" title="Animal">
-                <div class="region__scroll-content__tiles__single-tile">
-                    <div class="img-container">
-                        <img src="<?= URL ?>dist/img/test_img.png" alt="Test">
-                    </div>
-                    <div class="description">
-                        <div class="details">
-                            <span>ANIMALIA - ACTINOPTERYGII</span>
-                            <span>Global</span>
-                        </div>
-                        <h3>Lined Seahorse</h3>
-                        <p class="italic">Hippocampus erectus</p>
-                        <div class="status">
-                            <div class="status__arrow">
-                                <span>Decreasing</span>
-                                <img src="<?= URL ?>dist/img/arrow.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="#" title="Animal">
-                <div class="region__scroll-content__tiles__single-tile">
-                    <div class="img-container">
-                        <img src="<?= URL ?>dist/img/test_img.png" alt="Test">
-                    </div>
-                    <div class="description">
-                        <div class="details">
-                            <span>ANIMALIA - ACTINOPTERYGII</span>
-                            <span>Global</span>
-                        </div>
-                        <h3>Lined Seahorse</h3>
-                        <p class="italic">Hippocampus erectus</p>
-                        <div class="status">
-                            <div class="status__arrow">
-                                <span>Decreasing</span>
-                                <img src="<?= URL ?>dist/img/arrow.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
+                </a>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
 <script>
-    const count = <?= json_encode($categoryCountArray['count']) ?>;    
+    const count = <?= json_encode($categoryCountArray['category']) ?>;    
 </script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <?php include './views/partials/footer.php'; ?>

@@ -13,7 +13,8 @@ define('URL','http://localhost/si_back/');
 define('token', '9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee');
 
 //Get q param
-$q = !empty($_GET['q']) ? $_GET['q'] : 'home';
+
+$q = !empty($_GET['q']) ? strtolower($_GET['q']) : 'home';
 
 //define controller
 $controller = '404';
@@ -27,10 +28,9 @@ if($q == 'home'){
 $countryNameURL = 'https://apiv3.iucnredlist.org/api/v3/country/list?token='.token;
 $countryArray = ApiRequest($countryNameURL, 604800);
 
-
 foreach ($countryArray->results as $key => $value) {
     // SPIECES
-    if (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'\/[a-zA-Z _.]+[\/]?$/', $q)) {
+    if (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'\/[a-z _.]+[\/]?$/', $q)) {
         $controller = 'species';
         $_GET['country'] = $value->isocode;
     }

@@ -1,6 +1,6 @@
 <?php
   // FUNCTIONS
-  function ApiRequest($url, $delay){
+  function ApiRequest($url, $delay, $returnJSON = false){
 
     // Cache info
     $cacheKey = md5($url);
@@ -25,51 +25,61 @@
         // Save API in cache
         file_put_contents($cachePath, $result);
     }
-
-    $result= json_decode($result);
-
+    if (!$returnJSON) {
+        $result= json_decode($result);
+    }
     return $result;
   }
 
-  function selectRandomSpiecies($array,$count,$range){
-        $newArray = array();
+    function selectRandomSpiecies($array,$range){
+        $newArray = array(
+            
+        );
+        if ($array['count']<$range) {
+            $range = $array['count'];
+        }
         for ($i=0; $i < $range ; $i++) {
             // Generate Random key
-            $key = rand(0,$count);
+            $key = rand(0,$array['count']-2);
             // Add random spieces to a new array
-            $newArray[]=$array[$key];
+            $newArray[]['names']=$array['names'][$key];
             // Remove selected one from original array
-            unset($array[$key]);
+            unset($array['names'][$key]);
             // Reindex of the old array
-            $array = array_values($array);
+            $array['names'] = array_values($array['names']);
             // Decrease the count number of the original array
-            $count -= 1;
+            $array['count']--;
         }
-    
     $result = array(
         'newArray' => $newArray,
-        'oldArray' => $array,
-        'newCount' => $count
+        'oldArray' => array(
+            'names' => $array['names'],
+            'count' => $array['count']
+        ),
     );
     return $result;
-  }
+    }
 
   function addUrlImage($array){
         foreach ($array as $key => $value) {
+
             // GET Img if existing for each spieces in array
-            $wikipediaUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.$value->genus_name.'&prop=pageimages&format=json&piprop=original';
-            $result = ApiRequest($wikipediaUrl, 604800);
+            $wikipediaUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.$value['genus'].'&prop=pageimages&format=json&piprop=original';
+
+            // echo $wikipediaUrl;
+            // echo "<br>";
+            $data = ApiRequest($wikipediaUrl, 604800);
             
             // For every result 
-            foreach ($result->query->pages as $resultKey => $resultValue) {
+            foreach ($data->query->pages as $resultKey => $resultValue) {
                 // If img exist => add to array
                 if (!empty($resultValue->original)) {
-                $value->url= $resultValue->original->source;
+                    $array[$key]['url']= $resultValue->original->source;
                 }
                 else{
-                    $value->url= URL.'dist/img/defaultImg.jpg';
+                    $array[$key]['url']= URL.'dist/img/defaultImg.png';
                 }
             }
         }
         return $array;
-  }
+    }

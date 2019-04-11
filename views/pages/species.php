@@ -1,5 +1,5 @@
 <?php
-    $country = explode('/', $_GET['q'])[0];
+    $country = str_replace('_', ' ', explode('/', $_GET['q'])[0]);
     
     $common_name = $speciesInfosArray['general'][0]->main_common_name;
     $scientific_name = $speciesInfosArray['general'][0]->scientific_name;
@@ -51,7 +51,7 @@
         <div class="species__scroll-content__main">
             <div class="title">
                 <h1><?= !empty($common_name) ? $common_name : $scientific_name  ?></h1>
-                <a href="<?= URL.$country ?>" title="Back to country">Back</a>
+                <a href="<?= URL.$country ?>" title="Back to country" class="js-go-back">Back</a>
             </div>
             <p class="italic scientific"><?= !empty($common_name) ? $scientific_name : '' ?></p>
             <?php if(empty($threats) && empty($measures)): ?>
