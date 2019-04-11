@@ -1,37 +1,12 @@
-<?php include './views/partials/header.php'; ?>
+<?php include './views/partials/header.php' ?>
 
 <div class="region">
-    <div class="region__sidebar">
-        <div class="region__sidebar__header">
-            <button class="menu js-menu">
-                <div class="bar">
-                </div>
-            </button>
+    <?php include './views/partials/sidebar.php' ?>
+    <div class="region__scroll-content">
+        <div class="region__scroll-content__stats">
+            <h2>Statistics</h2>
             
         </div>
-        <div class="region__sidebar__content">
-            <h1>Northern Africa</h1>
-            <div class="img-container">
-                <img src="<?= URL ?>dist/img/test_region.png" alt="">
-            </div>
-            <div class="back-link">
-                <a href="<?= URL ?>" title="Go to the map">
-                    <img src="<?= URL ?>dist/img/world_minia.png" alt="">
-                    <p>Back to the map !</p>
-                </a>
-            </div>
-        </div>
-        <div class="full-menu">
-            <nav>
-                <ul>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Map</a></li>
-                    <li><a href="">About</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <div class="region__scroll-content">
         <div class="region__scroll-content__header">
             <div class="filter">You can filter here</div>
             <form action="#" method="post">
