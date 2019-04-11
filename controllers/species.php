@@ -65,7 +65,7 @@
     $isTerrestrialSystem = $speciesInfosArray['general'][0]->terrestrial_system == '1'? true : false;
     
     echo '<pre>';
-    print_r($speciesInfosArray);
+    print_r($_GET);
     echo '</pre>';
     
     include './views/pages/species.php';
