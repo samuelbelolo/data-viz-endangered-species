@@ -32,15 +32,19 @@
   }
 
     function selectRandomSpiecies($array,$range){
-        $newArray = array(
-            
-        );
+        $newArray = array();
+        $isLowerThanRange = false;
         if ($array['count']<$range) {
+            $isLowerThanRange = true;
             $range = $array['count'];
         }
+        
         for ($i=0; $i < $range ; $i++) {
             // Generate Random key
             $key = rand(0,$array['count']-2);
+            if ($isLowerThanRange) {
+                $key = 0;
+            }
             // Add random spieces to a new array
             $newArray[]['names']=$array['names'][$key];
             // Remove selected one from original array

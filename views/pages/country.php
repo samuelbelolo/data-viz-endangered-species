@@ -28,33 +28,33 @@ $species = $selectedSpeciesArray['newArray'];
         <div class="region__scroll-content__header">
             <h2>Browse the species</h2>
             <div class="filter">You can filter here</div>
-            <form action="#" class="categoryForm" method="post">
+            <form action="" class="categoryForm" method="post">
                 <div class="category">
-                    <input checked type="radio" name="cat" id="lc" value="lc">
+                    <input <?= empty($_POST['cat'])? 'checked':''; ?> type="radio" name="cat" id="lc" value="LC">
                     <label for="lc">Least Concern</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="nv" value="nv">
+                    <input <?= (!empty($_POST['cat']) && $_POST['cat'] == 'NT')? 'checked':''; ?> type="radio" name="cat" id="nv" value="NT">
                     <label for="nv">Never Threatened</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="vu" value="vu">
+                    <input <?= (!empty($_POST['cat']) && $_POST['cat'] == 'VU')? 'checked':''; ?> type="radio" name="cat" id="vu" value="VU">
                     <label for="vu">Vulnerable</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="en" value="en">
+                    <input <?= (!empty($_POST['cat']) && $_POST['cat'] == 'EN')? 'checked':''; ?> type="radio" name="cat" id="en" value="EN">
                     <label for="en">Endangered</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="ce" value="ce">
+                    <input <?= (!empty($_POST['cat']) && $_POST['cat'] == 'CR')? 'checked':''; ?> type="radio" name="cat" id="ce" value="CR">
                     <label for="ce">Critically Endangered</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="ew" value="ew">
+                    <input <?= (!empty($_POST['cat']) && $_POST['cat'] == 'EW')? 'checked':''; ?> type="radio" name="cat" id="ew" value="EW">
                     <label for="ew">Extinct in the wild</label>
                 </div>
                 <div class="category">
-                    <input type="radio" name="cat" id="ex" value="ex">
+                    <input <?= (!empty($_POST['cat']) && $_POST['cat'] == 'EX')? 'checked':''; ?> type="radio" name="cat" id="ex" value="EX">
                     <label for="ex">Extinct</label>
                 </div>
             </form>
