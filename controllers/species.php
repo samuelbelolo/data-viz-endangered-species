@@ -2,7 +2,7 @@
     // $_GET PROCESS
 
     $region = explode('/',$_GET['q'])[0];
-    $speciesName = explode('/',$_GET['q'])[1];
+    $speciesName = str_replace("_", " ", explode('/',$_GET['q'])[1]);
 
     /**
      * API
