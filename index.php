@@ -32,6 +32,7 @@ foreach ($countryArray->results as $key => $value) {
     // SPIECES
     if (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'\/[a-z _.]+[\/]?$/', $q)) {
         $controller = 'species';
+        $_GET['country'] = $value->isocode;
     }
     elseif (preg_match('/^'.str_replace(" ", "_",strtolower($value->country)).'[\/]?$/', $q)) {
         $controller = 'country';
