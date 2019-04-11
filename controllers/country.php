@@ -3,7 +3,16 @@
     *   API 
     */
 
+    // SORT BY
     $sortBy = 'LC';
+
+    echo '<pre>';
+    print_r($_POST);
+    echo '</pre>';
+    // Change Sort if $_POST from the form on the page
+    if (!empty($_POST['cat'])) {
+        $sortBy = $_POST['cat'];
+    }
 
 
     $countrySpeciesURL = 'https://apiv3.iucnredlist.org/api/v3/country/getspecies/'.$_GET['country'].'?token='.token;
@@ -105,12 +114,15 @@
     // print_r($selectedSpeciesArray);
     // echo '</pre>';
     // die();
-    $_POST['isNextSpecies'] = 'true';
-    $_POST['array'] = $selectedSpeciesArray;
+    // $_POST['isNextSpecies'] = 'true';
+    // $_POST['array'] = $selectedSpeciesArray;
 
-
-    if (!empty($_POST['isNextSpecies']) && $_POST['isNextSpecies']== 'true') {
+    if ($_POST['isNextSpecies'] == 'true') {
+        echo '<pre>';
+        print_r($_POST['array']['oldArray']);
+        echo '</pre>';
         $selectedSpeciesArray = selectRandomSpiecies($_POST['array']['oldArray'],6);
+        
 
         /**
         *   Get Infos Of Species
@@ -132,6 +144,9 @@
         */
 
         $selectedSpeciesArray['newArray'] = addUrlImage($selectedSpeciesArray['newArray']);
+        // echo '<pre>';
+        // print_r($selectedSpeciesArray['newArray']);
+        // echo '</pre>';
 
         // echo '<pre>';
         // print_r(json_encode($selectedSpeciesArray));
