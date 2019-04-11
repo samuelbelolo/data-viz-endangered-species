@@ -28,7 +28,7 @@ $species = $selectedSpeciesArray['newArray'];
         <div class="region__scroll-content__header">
             <h2>Browse the species</h2>
             <div class="filter">You can filter here</div>
-            <form action="#" method="post">
+            <form action="#" class="categoryForm" method="post">
                 <div class="category">
                     <input checked type="radio" name="cat" id="lc" value="lc">
                     <label for="lc">Least Concern</label>
