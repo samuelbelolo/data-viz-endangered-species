@@ -15,47 +15,43 @@
     //     print_r($countryArray->results[$i]->isocode);
     //     echo '</pre>';
     // }
-    $i =0;
-    foreach ($countryArray->results as $key => $value) {
-        $countrySpeciesURL = 'https://apiv3.iucnredlist.org/api/v3/country/getspecies/'.$value->isocode.'?token='.token;
-            $countryArray = ApiRequest($countrySpeciesURL, 604800);
-            foreach ($countryArray->result as $key => $value) {
-                $generalInfosURL = 'https://apiv3.iucnredlist.org/api/v3/species/'.$value->scientific_name.'?token='.token;
+    // $i =0;
+    // foreach ($countryArray->results as $key => $value) {
+    //     $countrySpeciesURL = 'https://apiv3.iucnredlist.org/api/v3/country/getspecies/'.$value->isocode.'?token='.token;
+    //         $countryArray = ApiRequest($countrySpeciesURL, 604800);
+    //         foreach ($countryArray->result as $key => $value) {
+    //             $generalInfosURL = 'https://apiv3.iucnredlist.org/api/v3/species/'.$value->scientific_name.'?token='.token;
 
-                $generalInfosArray = ApiRequest($generalInfosURL, 604800);
-                $narrativeURL = 'https://apiv3.iucnredlist.org/api/v3/species/narrative/'.$value->scientific_name.'?token='.token;
-                $narrativeArray = ApiRequest($narrativeURL, 604800);
-                $threatsURL= 'https://apiv3.iucnredlist.org/api/v3/threats/species/name/'.$value->scientific_name.'?token='.token;
-                $threatsArray = ApiRequest($threatsURL, 604800);
-                $habitatsURL = 'https://apiv3.iucnredlist.org/api/v3/habitats/species/name/'.$value->scientific_name.'?token='.token;
-                $habitatArray = ApiRequest($habitatsURL, 604800);
-                echo '<pre>';
-                print_r($generalInfosArray);
-                echo '</pre>';
-                // Measures
+    //             $generalInfosArray = ApiRequest($generalInfosURL, 604800);
+    //             $narrativeURL = 'https://apiv3.iucnredlist.org/api/v3/species/narrative/'.$value->scientific_name.'?token='.token;
+    //             $narrativeArray = ApiRequest($narrativeURL, 604800);
+    //             $threatsURL= 'https://apiv3.iucnredlist.org/api/v3/threats/species/name/'.$value->scientific_name.'?token='.token;
+    //             $threatsArray = ApiRequest($threatsURL, 604800);
+    //             $habitatsURL = 'https://apiv3.iucnredlist.org/api/v3/habitats/species/name/'.$value->scientific_name.'?token='.token;
+    //             $habitatArray = ApiRequest($habitatsURL, 604800);
+    //             echo '<pre>';
+    //             print_r($generalInfosArray);
+    //             echo '</pre>';
+    //             // Measures
 
-                $measuresURL = 'https://apiv3.iucnredlist.org/api/v3/measures/species/name/'.$value->scientific_name.'?token='.token;
-                $measuresArray = ApiRequest($measuresURL, 604800);
+    //             $measuresURL = 'https://apiv3.iucnredlist.org/api/v3/measures/species/name/'.$value->scientific_name.'?token='.token;
+    //             $measuresArray = ApiRequest($measuresURL, 604800);
                 
-                // Common Name
+    //             // Common Name
 
-                $commonNamesURL = 'https://apiv3.iucnredlist.org/api/v3/species/common_names/'.$value->scientific_name.'?token='.token;
-                $commonNamesArray = ApiRequest($commonNamesURL, 604800);
-            }
-        $i++;
+    //             $commonNamesURL = 'https://apiv3.iucnredlist.org/api/v3/species/common_names/'.$value->scientific_name.'?token='.token;
+    //             $commonNamesArray = ApiRequest($commonNamesURL, 604800);
+    //         }
+    //     $i++;
         
-    }
-    die();
+    // }
+    // die();
     /**
     *   API 
     */
 
     // SORT BY
     $sortBy = 'LC';
-
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
     // Change Sort if $_POST from the form on the page
     if (!empty($_POST['cat'])) {
         $sortBy = $_POST['cat'];
@@ -157,48 +153,55 @@
 
     $selectedSpeciesArray['newArray'] = addUrlImage($selectedSpeciesArray['newArray']);
 
-    // echo '<pre>';
-    // print_r($selectedSpeciesArray);
+    
+    // $dataa = json_decode($data);
+    
+    // print_r($data);
+    // echo '</pre>';
+    // $_POST['array'] = json_decode($_POST['array'], true);
+    // if (!empty($_POST['array'])) {
+    //     echo '<pre>';
+    // print_r($_POST['array']);
     // echo '</pre>';
     // die();
-    // $_POST['isNextSpecies'] = 'true';
-    // $_POST['array'] = $selectedSpeciesArray;
-
-    if (!empty($_POST['isNextSpecies']) && $_POST['isNextSpecies'] == 'true') {
-        echo '<pre>';
-        print_r($_POST['array']['oldArray']);
-        echo '</pre>';
-        $selectedSpeciesArray = selectRandomSpiecies($_POST['array']['oldArray'],6);
+    // }
+    
+    // if (!empty($_POST['array'])) {
+    //     $selectedSpeciesArray = selectRandomSpiecies($_POST['array']['oldArray'],6);
         
+    //     // echo '<pre>';
+    //     // print_r($selectedSpeciesArray);
+    //     // echo '</pre>';
 
-        /**
-        *   Get Infos Of Species
-        */
-        foreach ($selectedSpeciesArray['newArray'] as $key => $value) {
-            // Make URL
-            $speciesInfosUrl='https://apiv3.iucnredlist.org/api/v3/species/'.$value['names'].'?token='.token;
-            // Make Request
-            $speciesInfosArray = ApiRequest($speciesInfosUrl, 604800);
-            // Add Infos to general Array
-            foreach ($speciesInfosArray->result[0] as $keySpecies => $value) {
-                $selectedSpeciesArray['newArray'][$key][$keySpecies] = $value;
-            }
-        }
+    //     /**
+    //     *   Get Infos Of Species
+    //     */
+    //     foreach ($selectedSpeciesArray['newArray'] as $key => $value) {
+    //         // Make URL
+    //         $speciesInfosUrl='https://apiv3.iucnredlist.org/api/v3/species/'.$value['names'].'?token='.token;
+    //         // Make Request
+    //         $speciesInfosArray = ApiRequest($speciesInfosUrl, 604800);
+    //         // Add Infos to general Array
+    //         foreach ($speciesInfosArray->result[0] as $keySpecies => $value) {
+    //             $selectedSpeciesArray['newArray'][$key][$keySpecies] = $value;
+    //         }
+    //     }
 
 
-        /**
-        *  Add Image URL
-        */
+    //     /**
+    //     *  Add Image URL
+    //     */
 
-        $selectedSpeciesArray['newArray'] = addUrlImage($selectedSpeciesArray['newArray']);
-        // echo '<pre>';
-        // print_r($selectedSpeciesArray['newArray']);
-        // echo '</pre>';
+    //     $selectedSpeciesArray['newArray'] = addUrlImage($selectedSpeciesArray['newArray']);
+    //     // echo '<pre>';
+    //     // print_r($selectedSpeciesArray['newArray']);
+    //     // echo '</pre>';
 
-        echo '<pre>';
-        print_r(json_encode($selectedSpeciesArray));
-        echo '</pre>';
-    }
+    //     echo '<pre>';
+    //     print_r(json_encode($selectedSpeciesArray));
+    //     echo '</pre>';
+    //     die();
+    // }
 
     
     // echo '<pre>';

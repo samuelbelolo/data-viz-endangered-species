@@ -95,19 +95,12 @@ $species = $selectedSpeciesArray['newArray'];
                     </div>
                 </a>
             <?php endforeach; ?>
-            <div class="loader-container">
-                <div class="loader">
-                    <svg class="circular" viewBox="25 25 50 50">
-                        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
-                    </svg>
-                </div>
-            </div>
-            <button class="js-load-more load-more">Load more</button>
         </div>
     </div>
 </div>
 <script>
-    const count = <?= json_encode($categoryCountArray['category']) ?>;    
+    const count = <?= json_encode($categoryCountArray['category']) ?>;
+    const selectedSpecies = <?= json_encode($selectedSpeciesArray) ?>
 </script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
 <?php include './views/partials/footer.php'; ?>
