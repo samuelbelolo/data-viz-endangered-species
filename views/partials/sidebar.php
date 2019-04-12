@@ -16,7 +16,7 @@
             <?php include './views/partials/world_svg.php' ?>
         </div>
         <div class="back-link">
-            <a href="<?= URL ?>" title="Go to the map">
+            <a href="<?= URL ?>map" title="Go to the map">
                 <img src="<?= URL ?>dist/img/world_minia.png" alt="">
                 <p>Back to the map !</p>
             </a>
@@ -25,10 +25,12 @@
     <div class="full-menu">
         <nav>
             <ul>
-                <li><a href="">Home</a></li>
-                <li><a href="">Map</a></li>
-                <li><a href="">About</a></li>
+                <li><a href="<?= URL ?>">Home</a></li>
+                <li><a href="<?= URL ?>map">Map</a></li>
+                <li><a href="<?= URL ?>about">About</a></li>
             </ul>
         </nav>
+        <a class="test-link" href="<?= URL ?>kenya/loxodonta_africana" title="Link with data">Test link with some data</a>
+
     </div>
 </div>

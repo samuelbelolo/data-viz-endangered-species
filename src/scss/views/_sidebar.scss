@@ -121,7 +121,16 @@
         &.is-open{
             transform: translateX(0);
         }
+        .test-link{
+            color: $white;
+            font-size: 2rem;
+            text-decoration: none;
+            &:hover{
+                text-decoration: underline;
+            }
+        }
         nav{
+            margin-bottom: 20rem;
             ul{
                 margin: 0;
                 padding: 0;
