@@ -71,9 +71,9 @@
         'commonNames' => $commonNamesArray->result,
     );
 
-    echo '<pre>';
-    print_r($speciesInfosArray);
-    echo '</pre>';
+    // echo '<pre>';
+    // print_r($speciesInfosArray);
+    // echo '</pre>';
 
     /**
     * VALUES
