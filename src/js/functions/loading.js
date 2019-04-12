@@ -9,7 +9,6 @@ function loading () {
 
     for (const _link of $links) {
         _link.addEventListener('click', () => {
-            console.log('click')
             $loader.style.display = 'flex'
         })
     }

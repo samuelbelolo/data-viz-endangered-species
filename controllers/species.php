@@ -1,4 +1,6 @@
 <?php
+
+
     // $_GET PROCESS
 
     $region = explode('/',$_GET['q'])[0];
@@ -71,10 +73,6 @@
         'commonNames' => $commonNamesArray->result,
     );
 
-    // echo '<pre>';
-    // print_r($speciesInfosArray);
-    // echo '</pre>';
-
     /**
     * VALUES
     */
@@ -86,5 +84,8 @@
     $isFreshWaterSystem = $speciesInfosArray['general'][0]->freshwater_system == '1'? true : false;
     $isTerrestrialSystem = $speciesInfosArray['general'][0]->terrestrial_system == '1'? true : false;
     
+    // Meta Title 
+    $title = $region.' '.$speciesName;
     
+    // Include
     include './views/pages/species.php';

@@ -4,10 +4,10 @@ function load_more () {
     
     if ($countryLoadMore) {
         const $loader = document.querySelector('.region__scroll-content__tiles .loader-container')
-        $countryLoadMore.addEventListener('click', () => {
-            $loader.style.display = 'block'
-            //load more here
-        })
+        // $countryLoadMore.addEventListener('click', () => {
+        //     $loader.style.display = 'block'
+        //     //load more here
+        // })
     }
     
 }

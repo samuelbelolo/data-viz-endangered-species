@@ -95,6 +95,7 @@ $species = $selectedSpeciesArray['newArray'];
                     </div>
                 </a>
             <?php endforeach; ?>
+            <button class="js-load-more load-more">Load more</button>
         </div>
     </div>
 </div>

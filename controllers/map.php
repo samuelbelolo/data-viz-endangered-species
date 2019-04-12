@@ -1,5 +1,5 @@
 <?php
-
+// Meta Title
 $title = 'RedList - Map';
 
 /**
@@ -24,12 +24,5 @@ foreach ($countryArray->results as $key => $value) {
     $countryInfos['count'][$value->isocode] = $speciesByCountryResult->count;
 }
 
-// echo '<pre>';
-// print_r($countryInfos['names']);
-// echo '</pre>';
-
-// echo '<pre>';
-// print_r($countryArray);
-// echo '</pre>';
-
+// Include
 include './views/pages/map.php';

@@ -1,7 +1,5 @@
 function form_category () {
     
-    console.log('ok');
-    
     /**
     *   Variables 
     */

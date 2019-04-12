@@ -11,7 +11,6 @@ function statistics () {
                 value: count[key]
             })
         };
-        console.log(countArray);
 
         let totalCount = 0
 
