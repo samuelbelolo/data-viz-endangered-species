@@ -66,7 +66,7 @@
 
   function addUrlImage($array){
         foreach ($array as $key => $value) {
-
+            
             // GET Img if existing for each spieces in array
             $wikipediaUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.$value['genus'].'&prop=pageimages&format=json&piprop=original';
 
