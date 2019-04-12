@@ -1,0 +1,37 @@
+.not-found{
+    width: 100vw;
+    height: 100vh;
+    padding: 4rem;
+    background: $dark-blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        color: $red;
+        font-size: 5rem;
+        text-align: center;
+    }
+    h2{
+        color: $white;
+        text-align: center;
+    }
+    a{
+        width: 40%;
+        svg{
+            width: 100%;
+            path{
+                fill: #44488A;
+                stroke: #44488A;
+            }
+        }
+        &:hover{
+            svg{
+                path{
+                    fill: $red;
+                    stroke: $red;
+                }
+            }
+        }
+    }
+}

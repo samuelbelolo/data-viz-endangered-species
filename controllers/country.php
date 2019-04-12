@@ -1,5 +1,52 @@
 <?php
     /**
+    *   GET ALL URL 
+    */
+
+    $countryNameURL = 'https://apiv3.iucnredlist.org/api/v3/country/list?token=' . token;
+    $countryArray   = ApiRequest($countryNameURL, 604800);
+
+    // for ($i=0; $i < 10 ; $i++) { 
+    //     $countrySpeciesURL = 'https://apiv3.iucnredlist.org/api/v3/country/getspecies/'.$countryArray->results[$i]->isocode.'?token='.token;
+    //     // echo $countrySpeciesURL;
+    //     $countryArray = ApiRequest($countrySpeciesURL, 604800);
+
+    //     echo '<pre>';
+    //     print_r($countryArray->results[$i]->isocode);
+    //     echo '</pre>';
+    // }
+    $i =0;
+    foreach ($countryArray->results as $key => $value) {
+        $countrySpeciesURL = 'https://apiv3.iucnredlist.org/api/v3/country/getspecies/'.$value->isocode.'?token='.token;
+            $countryArray = ApiRequest($countrySpeciesURL, 604800);
+            foreach ($countryArray->result as $key => $value) {
+                $generalInfosURL = 'https://apiv3.iucnredlist.org/api/v3/species/'.$value->scientific_name.'?token='.token;
+
+                $generalInfosArray = ApiRequest($generalInfosURL, 604800);
+                $narrativeURL = 'https://apiv3.iucnredlist.org/api/v3/species/narrative/'.$value->scientific_name.'?token='.token;
+                $narrativeArray = ApiRequest($narrativeURL, 604800);
+                $threatsURL= 'https://apiv3.iucnredlist.org/api/v3/threats/species/name/'.$value->scientific_name.'?token='.token;
+                $threatsArray = ApiRequest($threatsURL, 604800);
+                $habitatsURL = 'https://apiv3.iucnredlist.org/api/v3/habitats/species/name/'.$value->scientific_name.'?token='.token;
+                $habitatArray = ApiRequest($habitatsURL, 604800);
+                echo '<pre>';
+                print_r($generalInfosArray);
+                echo '</pre>';
+                // Measures
+
+                $measuresURL = 'https://apiv3.iucnredlist.org/api/v3/measures/species/name/'.$value->scientific_name.'?token='.token;
+                $measuresArray = ApiRequest($measuresURL, 604800);
+                
+                // Common Name
+
+                $commonNamesURL = 'https://apiv3.iucnredlist.org/api/v3/species/common_names/'.$value->scientific_name.'?token='.token;
+                $commonNamesArray = ApiRequest($commonNamesURL, 604800);
+            }
+        $i++;
+        
+    }
+    die();
+    /**
     *   API 
     */
 
