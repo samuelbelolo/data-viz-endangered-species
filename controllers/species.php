@@ -43,6 +43,24 @@
 
     $commonNamesURL = 'https://apiv3.iucnredlist.org/api/v3/species/common_names/'.$speciesName.'?token='.token;
     $commonNamesArray = ApiRequest($commonNamesURL, 604800);
+
+    // Get URL of Image
+
+    // Make the url
+    $wikipediaUrl = 'https://en.wikipedia.org/w/api.php?action=query&titles='.$generalInfosArray->result[0]->genus.'&prop=pageimages&format=json&piprop=original';
+    // Get the response
+    $data = ApiRequest($wikipediaUrl, 604800);
+
+    foreach ($data->query->pages as $resultKey => $resultValue) {
+        // If img exist => add to array
+        if (!empty($resultValue->original)) {
+            $generalInfosArray->result[0]->url= $resultValue->original->source;
+        }
+        else{
+            $generalInfosArray->result[0]->url= URL.'dist/img/defaultImg.png';
+        }
+    }
+
     
     $speciesInfosArray = array(
         'general' => $generalInfosArray->result,
@@ -50,8 +68,12 @@
         'threats' => $threatsArray->result,
         'habitats' => $habitatArray->result,
         'measures' => $measuresArray->result,
-        'commonNames' => $commonNamesArray->result
+        'commonNames' => $commonNamesArray->result,
     );
+
+    echo '<pre>';
+    print_r($speciesInfosArray);
+    echo '</pre>';
 
     /**
     * VALUES
