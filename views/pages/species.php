@@ -82,7 +82,7 @@
         </div>
         <div class="species__scroll-content__sidebar">
             <div class="img-container">
-                <img src="<?= URL ?>dist/img/test_img.png" alt="">
+                <img src="<?= $speciesInfosArray['general'][0]->url ?>" alt="">
             </div>
             <div class="description">
                 <div class="categories">
