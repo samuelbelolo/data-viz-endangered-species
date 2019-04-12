@@ -9,7 +9,7 @@ include('./functions.php');
  * Routing
  */
 
-define('URL','http://samuelbelolo.com/');
+define('URL','http://localhost/si_back/');
 define('token', '9bb4facb6d23f48efbf424bb05c0c1ef1cf6f468393bc745d42179ac4aca5fee');
 
 //Get q param
