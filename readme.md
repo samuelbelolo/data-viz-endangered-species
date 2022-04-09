@@ -1,5 +1,8 @@
 # The Red List Project
 
+## URL
+Visit the project on [https://red-list.alphonsebouy.fr/](https://red-list.alphonsebouy.fr/) !
+
 ## Description
 
 - This is a student project about the red list of endangered species : https://www.iucnredlist.org/.
@@ -16,6 +19,6 @@
 ## Stack
 - Functional PHP
 - SCSS
+- d3js
 
-## URL
-Visit the project on http://samuelbelolo.com !
+
